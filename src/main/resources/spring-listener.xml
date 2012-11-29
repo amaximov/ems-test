@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jms="http://www.springframework.org/schema/jms"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                            http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms.xsd">
+
+    <import resource="spring-common.xml"/>
+
+    <bean id="messageConverter" class="com.demo.esb.LoanMessageConverter">
+        <property name="converter">
+            <bean class="org.springframework.jms.support.converter.SimpleMessageConverter"/>
+        </property>
+    </bean>
+
+    <jms:listener-container connection-factory="connectionFactory" concurrency="5-10"
+                            message-converter="messageConverter" prefetch="10">
+        <jms:listener destination="queue.test.request" ref="processor" method="processLoan"
+                      response-destination="queue.test.response"/>
+    </jms:listener-container>
+
+    <bean id="processor" class="com.demo.app.LoanProcessor"/>
+</beans>
