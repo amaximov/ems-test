@@ -16,14 +16,14 @@
         </dependency>
 
         <dependency>
-            <systemPath>/Users/amaximov/programs/tibco/ems/6.3/lib/jms.jar</systemPath>
+            <systemPath>${project.basedir}/lib/jms.jar</systemPath>
             <groupId>com.tibco</groupId>
             <artifactId>jms</artifactId>
             <version>6.3</version>
             <scope>system</scope>
         </dependency>
         <dependency>
-            <systemPath>/Users/amaximov/programs/tibco/ems/6.3/lib/tibjms.jar</systemPath>
+            <systemPath>${project.basedir}/lib/tibjms.jar</systemPath>
             <groupId>com.tibco</groupId>
             <artifactId>tibjms</artifactId>
             <version>6.3</version>
